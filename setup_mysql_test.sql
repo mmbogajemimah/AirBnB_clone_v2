@@ -1,4 +1,4 @@
--- this script prepares a MySQL server for the project
+-- preparing mySQL server for the project
 -- create project testing database with the name : hbnb_test_db
 CREATE DATABASE IF NOT EXISTS hbnb_test_db;
 -- creating new user named : hbnb_test with all privileges on the db hbnb_test_db
