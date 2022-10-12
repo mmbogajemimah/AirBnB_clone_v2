@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-"""This module defines a class to manage file storage for hbnb clone"""
+"""A function that manages the file storage for the AirBnb clone"
 import json
 
 
 class FileStorage:
-    """This class manages storage of hbnb models in JSON format"""
+    """This class manages storage in JSON format"""
     __file_path = 'file.json'
     __objects = {}
 
     def all(self, cls=None):
-        """Returns a dictionary of models currently in storage"""
+        """The func returns a dictionary of models currently in storage"""
         if cls is None:
             return self.__objects
         cls_name = cls.__name__
@@ -20,13 +20,13 @@ class FileStorage:
         return dct
 
     def new(self, obj):
-        """Adds new object to storage dictionary"""
+        """The func adds new object to storage dictionary"""
         self.__objects.update(
             {obj.to_dict()['__class__'] + '.' + obj.id: obj}
             )
 
     def save(self):
-        """Saves storage dictionary to file"""
+        """The func saves storage dictionary to file"""
         with open(self.__file_path, 'w') as f:
             temp = {}
             temp.update(self.__objects)
@@ -35,14 +35,15 @@ class FileStorage:
             json.dump(temp, f)
 
     def reload(self):
-        """Loads storage dictionary from file"""
+        """This func loads storage dictionary from file"""
         from models.base_model import BaseModel
+
+	from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
         from models.user import User
         from models.place import Place
         from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
 
         classes = {
                     'BaseModel': BaseModel, 'User': User, 'Place': Place,
@@ -59,7 +60,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        ''' deletes the object obj from the attribute
+        '''This func deletes the object obj from the attribute
             __objects if it's inside it
         '''
         if obj is None:
@@ -69,5 +70,5 @@ class FileStorage:
             del self.__objects[obj_key]
 
     def close(self):
-        """Call the reload method"""
+        """This func Calls the reload method"""
         self.reload()
