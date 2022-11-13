@@ -5,7 +5,6 @@ which listens on 0.0.0.0 and port 5000
 it has two routes hello_HBNB and HBNB
 """
 from flask import Flask
-from markupsafe import escape
 
 
 app = Flask(__name__)
@@ -27,11 +26,12 @@ def hbnb():
     return "HBNB"
 
 
-@app.route('/c/<text>', strict_slashes=False)
+@app.route('/c/<string:text>', strict_slashes=False)
 def c_is_fun(text):
     '''
     Displays C followed by the value of text variable
     '''
+    text = text.replace("_", " ") 
     return "C %s" % text
 
 
