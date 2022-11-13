@@ -31,7 +31,7 @@ def c_is_fun(text):
     '''
     Displays C followed by the value of text variable
     '''
-    text = text.replace("_", " ") 
+    text = text.replace("_", " ")
     return "C %s" % text
 
 
